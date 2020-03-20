@@ -9,8 +9,10 @@
 	</head>
 	<body>
 	
-		<div id="app">
+		<div id="app" v-bind:abc="message">
 			{{ message }}
+			<br>
+			<span v-html="message"></span>
 		</div>
 		
 		<div id="app-2">
@@ -39,6 +41,12 @@
 		<div id="app-6">
 			<p>{{ message }}</p>
 			<input v-model="message">
+		</div>
+		
+		<div id="example">
+			<p>Thông điệp ban đầu: "{{ message }}"</p>
+			<p>Thông điệp bị thay đổi tính toán (computed): "{{ modifyMessage }}"</p>
+			<button v-on:click="abc">test</button>
 		</div>
 		
 	</body>
@@ -86,6 +94,23 @@
 		el: '#app-6',
 		data: {
 			message: 'Hãy sửa thông điệp này'
+		}
+	})
+	var vm = new Vue({
+		el: '#example',
+		data:{
+			message: 'người đông bến đợi thuyền xuôi ngược'
+		},
+		computed: {
+			modifyMessage : function(){
+				return this.message + ' -> computed and change : ' + new Date().getMilliseconds()
+			},
+		},
+		methods: {
+			
+			abc: function(){
+				alert(this.modifyMessage)
+			}
 		}
 	})
 	</script>
