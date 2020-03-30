@@ -3,8 +3,8 @@
 	<head>
 		<title>Page Title</title>
 		
-		<!-- bản phát triển (development), bao gồm những cảnh báo hữu ích trong console -->
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!-- bản production, được tối ưu về dung lượng và tốc độ -->
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 	</head>
 	<body>
@@ -47,6 +47,10 @@
 			<p>Thông điệp ban đầu: "{{ message }}"</p>
 			<p>Thông điệp bị thay đổi tính toán (computed): "{{ modifyMessage }}"</p>
 			<button v-on:click="abc">test</button>
+		</div>
+		
+		<div id="vm1">
+			<p v-bind:class="classitem">Test</p>
 		</div>
 		
 	</body>
@@ -110,6 +114,15 @@
 			
 			abc: function(){
 				alert(this.modifyMessage)
+			}
+		}
+	})
+	var vm1 = new Vue({
+		el: '#vm1',
+		data: {
+			classitem: { 
+				activeClass: true,
+				errorClass: true 
 			}
 		}
 	})
